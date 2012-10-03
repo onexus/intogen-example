@@ -85,7 +85,6 @@
                         <main>tab3-table</main>
                         <top>views</top>
                         <topRight>tab3-search, tab3-filters, download, share</topRight>
-                        <visible>!data/topo_annotations, !data/gene_annotations</visible>
                     </view>
                     <view>
                         <title>Plot</title>
@@ -358,8 +357,8 @@
                     <id>genes-by-topography-plot</id>
                     <collection>data/gene_topo_mutations-combination</collection>
                     <fields>
-                        <x>3</x>
-                        <y>4</y>
+                        <x>1</x>
+                        <y>2</y>
                         <color>0</color>
                         <size>0</size>
                     </fields>
