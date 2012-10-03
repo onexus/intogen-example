@@ -1,0 +1,139 @@
+<html>
+<head><title>Untitled document</title>
+    <style type="text/css">@import
+        url('https://themes.googleusercontent.com/fonts/css?kit=lhDjYqiy3mZ0x6ROQEUoUw');ol{margin:0;padding:0}.c8{list-style-type:disc;margin:0;padding:0}.c11{max-width:468pt;background-color:#ffffff;padding:72pt
+        72pt 72pt
+        72pt}.c12{list-style-type:decimal;margin:0;padding:0}.c4{padding-left:0pt;margin-left:36pt}.c0{color:#1155cc;text-decoration:underline}.c1{text-align:justify;direction:ltr}.c7{color:inherit;text-decoration:inherit}.c10{color:#666666;font-size:12pt}.c2{font-size:10pt;font-family:"Consolas"}.c3{direction:ltr}.c6{height:11pt}.c9{font-weight:bold}.c5{text-decoration:underline}.title{padding-top:24pt;line-height:1.15;text-align:left;color:#000000;font-size:36pt;font-family:"Arial";font-weight:bold;padding-bottom:6pt}.subtitle{padding-top:18pt;line-height:1.15;text-align:left;color:#666666;font-style:italic;font-size:24pt;font-family:"Georgia";padding-bottom:4pt}li{color:#000000;font-size:11pt;font-family:"Arial"}p{color:#000000;font-size:11pt;margin:0;font-family:"Arial"}h1{padding-top:24pt;line-height:1.15;text-align:left;color:#000000;font-size:18pt;font-family:"Arial";font-weight:bold;padding-bottom:6pt}h2{padding-top:18pt;line-height:1.15;text-align:left;color:#000000;font-size:14pt;font-family:"Arial";font-weight:bold;padding-bottom:4pt}h3{padding-top:14pt;line-height:1.15;text-align:left;color:#666666;font-size:12pt;font-family:"Arial";font-weight:bold;padding-bottom:4pt}h4{padding-top:12pt;line-height:1.15;text-align:left;color:#666666;font-style:italic;font-size:11pt;font-family:"Arial";padding-bottom:2pt}h5{padding-top:11pt;line-height:1.15;text-align:left;color:#666666;font-size:10pt;font-family:"Arial";font-weight:bold;padding-bottom:2pt}h6{padding-top:10pt;line-height:1.15;text-align:left;color:#666666;font-style:italic;font-size:10pt;font-family:"Arial";padding-bottom:2pt}
+    </style>
+</head>
+<body class="c11"><h1 class="c3"><a name="h.jvna9fx548it"></a><span>Input data</span></h1>
+
+<p class="c1"><span>To run the pipeline you need to input a catalog of mutations in a cohort of tumors. The input can be provided in three different format (</span><span
+        class="c0"><a class="c7" href="#id.nyiylxekvea2">Tabulated</a></span><span>, </span><span class="c0"><a
+        class="c7" href="#id.y1o8w0n7lyx8">VCF</a></span><span>&nbsp;and </span><span class="c0"><a class="c7"
+                                                                                                    href="#id.abe0kqowplf0">MAF</a></span><span>). Additionally you can provide a clinical annotation file with clinical features of the samples, which will be used when exploring the results in the browser.</span>
+</p><a href="#" name="id.nyiylxekvea2"></a>
+
+<h3 class="c3"><span class="c5">Tabulated format</span></h3>
+
+<p class="c3"><span>The default format is a simple tab-separated format, containing six required columns:</span></p>
+<ol class="c12" start="1">
+    <li class="c4 c3"><span class="c9">chromosome</span><span>&nbsp;- just the name or number, with no &#39;chr&#39; prefix</span>
+    </li>
+    <li class="c4 c3"><span class="c9">start</span></li>
+    <li class="c4 c3"><span class="c9">end</span></li>
+    <li class="c4 c3"><span class="c9">strand</span><span>&nbsp;- defined as + (forward) or - (reverse).</span></li>
+    <li class="c4 c3"><span class="c9">allele</span><span>&nbsp;- pair of alleles separated by a &#39;&gt;&#39;, with the reference allele first</span>
+    </li>
+    <li class="c4 c3"><span class="c9">sample_id</span><span>&nbsp;- Identifier of the sample.</span></li>
+</ol>
+<p class="c3 c6"><span></span></p>
+
+<p class="c3"><span>Example:</span></p>
+
+<p class="c3"><span class="c2">9 &nbsp; &nbsp;134853570 &nbsp; 134853570 &nbsp; &nbsp;+ &nbsp; &nbsp;T&gt;C &nbsp; &nbsp;P66</span>
+</p>
+
+<p class="c3"><span class="c2">3 &nbsp; &nbsp;159866794 &nbsp; 159866794 &nbsp; &nbsp;+ &nbsp; &nbsp;A&gt;G &nbsp; &nbsp;P72</span>
+</p>
+
+<p class="c3"><span class="c2">22 &nbsp; 36358654 &nbsp; &nbsp;36358654 &nbsp; &nbsp; + &nbsp; &nbsp;G&gt;T &nbsp; &nbsp;P1</span>
+</p>
+
+<p class="c3"><span class="c2">2 &nbsp; &nbsp;233420510 &nbsp; 233420510 &nbsp; &nbsp;+ &nbsp; &nbsp;G&gt;C &nbsp; &nbsp;P52</span>
+</p>
+
+<p class="c3"><span class="c2">13 &nbsp; 19615309 &nbsp; &nbsp;19615309 &nbsp; &nbsp; + &nbsp; &nbsp;C&gt;T &nbsp; &nbsp;P18</span>
+</p>
+
+<p class="c3"><span class="c2">X &nbsp; &nbsp;70360607 &nbsp; &nbsp;70360607 &nbsp; &nbsp; + &nbsp; &nbsp;G&gt;T &nbsp; &nbsp;P55</span>
+</p>
+
+<p class="c3"><span class="c2">13 &nbsp; 19661627 &nbsp; &nbsp;19661627 &nbsp; &nbsp; + &nbsp; &nbsp;C&gt;T &nbsp; &nbsp;P9</span>
+</p>
+
+<p class="c3"><span class="c2">1 &nbsp; &nbsp;226413328 &nbsp; 226413328 &nbsp; &nbsp;+ &nbsp; &nbsp;G&gt;A &nbsp; &nbsp;P66</span>
+</p>
+
+<p class="c3"><span class="c2">7 &nbsp; &nbsp;99364644 &nbsp; &nbsp;99364644 &nbsp; &nbsp; + &nbsp; &nbsp;C&gt;T &nbsp; &nbsp;P73</span>
+</p>
+
+<p class="c3"><span class="c2">3 &nbsp; &nbsp;33074745 &nbsp; &nbsp;33074745 &nbsp; &nbsp; + &nbsp; &nbsp;C&gt;G &nbsp; &nbsp;P55</span>
+</p>
+
+<p class="c3 c6"><span class="c2"></span></p>
+
+<p class="c1"><span>IntOGen Pipeline accepts both hg18 and hg19 coordinates. The genomic coordinates system must be specified at the beginning of the pipeline.</span>
+</p><a href="#" name="id.y1o8w0n7lyx8"></a>
+
+<h3 class="c3"><span class="c5">VCF (Variant Call Format)</span></h3>
+
+<p class="c3"><span class="c0"><a class="c7"
+                                  href="https://wiki.nci.nih.gov/display/TCGA/TCGA+Variant+Call+Format+%28VCF%29+Specification#TCGAVariantCallFormatVCF11Specification-AboutTCGAVCFspecification">TCGA
+    VCF</a></span><span>&nbsp; </span></p>
+
+<p class="c3"><span class="c0"><a class="c7"
+                                  href="http://www.1000genomes.org/wiki/Analysis/Variant%20Call%20Format/vcf-variant-call-format-version-41">VCF
+    4.1</a></span></p>
+
+<p class="c3 c6"><span class="c0"><a class="c7"
+                                     href="http://www.1000genomes.org/wiki/Analysis/Variant%20Call%20Format/vcf-variant-call-format-version-41"></a></span>
+</p>
+
+<p class="c1"><span>VCF is a text file format for storing and reporting genomic sequence variations.</span></p>
+
+<p class="c1">
+    <span>IntOGen Pipeline accepts this format and the data can be sent through the pipeline in two ways:</span></p>
+
+<p class="c3 c6"><span></span></p>
+<ol class="c8" start="1">
+    <li class="c4 c1"><span
+            class="c5">Input a single .vcf file with sequence variants from several samples:</span><span>&nbsp;This file will contain data from several samples in vcf format appended. Each sample can be identified by adding the header &ldquo;##INDIVIDUAL=sample_id&rdquo;
+        before each of the samples data.</span></li>
+    <li class="c4 c3"><span
+            class="c5">Input a compressed file (zip/tar/tar.gz) containing several .vcf files:</span><span>&nbsp;The compressed file must contain one vcf file for each sample. In this case, if the header &ldquo;##INDIVIDUAL=sample_id&rdquo;
+        is included, this id will be used, otherwise, the name of the file will be used as sample_id.</span></li>
+</ol>
+<a href="#" name="id.abe0kqowplf0"></a>
+
+<h3 class="c3"><span class="c5">MAF (Mutation Annotation Format)</span></h3>
+
+<p class="c3"><span class="c0"><a class="c7"
+                                  href="https://wiki.nci.nih.gov/display/TCGA/Mutation+Annotation+Format+%28MAF%29+Specification">Mutation
+    Annotation Format (MAF) Specification</a></span></p>
+
+<h3 class="c3"><span>The MAF format is a tab-separated text. The file can contain many columns as it can be seen in the specification, however the only columns that are necessary for IntOGen Pipeline are:</span>
+</h3>
+
+<p class="c3 c6"><span></span></p>
+<ol class="c12" start="1">
+    <li class="c4 c3"><span class="c9">Chrom</span></li>
+    <li class="c4 c3"><span class="c9">Start_Position</span></li>
+    <li class="c4 c3"><span class="c9">End_Position</span></li>
+    <li class="c3 c4"><span class="c9">Strand</span></li>
+    <li class="c4 c3"><span class="c9">Tumor_Seq_Allele1</span></li>
+    <li class="c4 c3"><span class="c9">Tumor_Seq_Allele2</span></li>
+    <li class="c4 c3"><span class="c9">Tumor_Sample_Barcode</span></li>
+</ol>
+<h3 class="c1"><span>Similarly as it was explained for VCF files, MAF files are accepted in the pipeline also in two ways:</span>
+</h3>
+
+<p class="c3 c6"><span></span></p>
+<ol class="c8" start="1">
+    <li class="c4 c3"><span>Input a single .maf file with several samples</span></li>
+    <li class="c4 c3"><span>Input a compressed file (zip/tar/tar.gz) containing several .maf files</span></li>
+</ol>
+<h3 class="c3"><span class="c5">Clinical annotation file</span></h3>
+
+<p class="c3 c6"><span class="c9 c5 c10"></span></p>
+
+<p class="c1"><span>The clinical annotation file is optional, it is not really needed to run the pipeline. However it is useful to navigate your data in the browser.</span>
+</p>
+
+<p class="c1"><span>The clinical annotation file should be a tabulated file that contains the ID of the sample in the first column and a number of additional columns, one for each clinical annotation. The first row is used as a header.</span>
+</p>
+
+<p class="c3 c6"><span></span></p>
+
+<p class="c3 c6"><span></span></p></body>
+</html>

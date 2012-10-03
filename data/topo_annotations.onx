@@ -1,0 +1,34 @@
+<collection>
+  <title>Topographies</title>
+  <property>
+      <key>FIXED_ENTITY_FIELD</key>
+      <value>NAME</value>
+  </property>
+  <property>
+      <key>FIXED_COLLECTION_LABEL</key>
+      <value>Topography</value>
+  </property>
+  <loader>
+    <plugin>tsv-loader</plugin>
+    <parameter>
+      <key>data</key>
+      <value>/data/topo_annotations.tsv</value>
+    </parameter>
+  </loader>
+  <fields>
+    <field>
+      <label>topoid</label>
+      <title>Topoid</title>
+      <id>TOPOID</id>
+      <type>integer</type>
+      <primary-key>true</primary-key>
+    </field>
+    <field>
+      <label>name</label>
+      <title>Name</title>
+      <id>NAME</id>
+      <type>string</type>
+    </field>
+  </fields>
+  <links/>
+</collection>

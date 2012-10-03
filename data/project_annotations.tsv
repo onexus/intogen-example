@@ -1,0 +1,16 @@
+PROJECTID	PROJECT_ALIAS	PROJECT_NAME	AUTHORS	SOURCE	COUNTRY	PUBMEDID	TOPOGRAPHY	TOPOID	TYPE
+icgc_snp_hopkinsBreast	BRCAJHU	Breast JHU	Johns Hopkins University	ICGC DCC	USA	17932254	breast [C50]	78	mutation
+icgc_snp_esCLL	CLLMICINN	Cll MICINN	MICINN	ICGC DCC	Spain	21642962	hematopoietic and reticuloendothelial systems [C42]	6	mutation
+icgc_snp_hopkinsColon	CLRLJHU	Colorectal JHU	Johns Hopkins University	ICGC DCC	USA	17932254	colon [C18]	9	mutation
+tcga_Glioblastoma_multiforme	GBMTCGA	Glioblastoma TCGA	TCGA	TCGA DATA PORTAL	USA	18772890	brain [C71]	5	mutation
+icgc_snp_hopkinsGBM	GBMJHU	Glioblastoma JHU	Johns Hopkins University	ICGC DCC	USA	18772396	brain [C71]	5	mutation
+icgc_snp_tspLung	LUCATSP	Lung TSP	Washington University School of Medicine	ICGC DCC	USA	18948947	lung and bronchus [C34]	65	mutation
+icgc_snp_hopkinsPanc	PACAJHU	Pancreatic JHU	Johns Hopkins University	ICGC DCC	USA	18772397	pancreas [C25]	135	mutation
+icgc_snp_sangerBreast	BRCAWTSI	Breast JHU	WTSI	ICGC DCC	UK	-	breast [C50]	78	mutation
+icgc_snp_dePedbrain	BRTMDKFZ	Pediatric Brain Tumors DKFZ	DKFZ	ICGC DCC	Germany	22265402	brain [C71]	5	mutation
+literature_breast_BC	BRCABC	Breast UBC	University of British Columbia	PubMed	Canada	22495314	breast [C50]	78	mutation
+literature_CLL_DF	CLLDF	Cll DFCI	Dana-Farber Cancer Institute	PubMed	USA	22150006	hematopoietic and reticuloendothelial systems [C42]	6	mutation
+literature_gastric_PFIZER	STCAPFIZER	Stomach Pfizer	Pfizer Worldwide Research and Development	PubMed	USA	22037554	stomach [C16]	127	mutation
+literature_NSCLC_WISCONSIN	NSCLCWISCONSIN	Lung MCW	Medical College of Wisconsin	PubMed	USA	22510280	lung and bronchus [C34]	65	mutation
+icgc_snp_frLiver	LICAIACR	Liver IARC	IACR	ICGC DCC	France	22561517	liver and hepatic bile ducts [C22]	2	mutation
+tcga_Breast_invasive_carcinoma	BRCATCGA	Breast Invasive Carcinoma	TCGA	TCGA DATA PORTAL	USA	-	breast [C50]	78	mutation

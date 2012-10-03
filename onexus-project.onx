@@ -1,0 +1,10 @@
+<project>
+    <title>IntOGen - Integrative Oncogenomics (example website)</title>
+    <plugins>
+        <plugin>
+            <id>tsv-loader</id>
+            <location>mvn:org.onexus/org.onexus.collection.loader.tsv/0.3.0-SNAPSHOT</location>
+        </plugin>
+    </plugins>
+</project>
+

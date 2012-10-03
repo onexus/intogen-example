@@ -1,0 +1,58 @@
+<collection>
+  <title>Mutations</title>
+  <loader>
+    <plugin>tsv-loader</plugin>
+    <parameter>
+      <key>data</key>
+      <value>/data/gene_project_mutations-recurrence.tsv</value>
+    </parameter>
+      <parameter>
+          <key>NULL_VALUE</key>
+          <value>\N</value>
+      </parameter>
+  </loader>
+  <fields>
+    <field>
+      <label>geneid</label>
+      <title>Geneid</title>
+      <id>GENEID</id>
+      <type>string</type>
+      <primary-key>true</primary-key>
+    </field>
+    <field>
+      <label>recurrence</label>
+      <title>Total number of mutated samples</title>
+      <id>RECURRENCE</id>
+      <type>integer</type>
+    </field>
+      <field>
+          <label>samples</label>
+          <title>Total number of samples</title>
+          <id>NUM_SAMPLES</id>
+          <type>integer</type>
+      </field>
+    <field>
+      <label>mut-freq</label>
+      <title>Mutation frequency</title>
+      <id>FREQ</id>
+      <type>double</type>
+    </field>
+    <field>
+      <label>projectid</label>
+      <title>Projectid</title>
+      <id>PROJECTID</id>
+      <type>string</type>
+      <primary-key>true</primary-key>
+    </field>
+  </fields>
+  <links>
+    <link>
+      <collection>/data/gene_annotations</collection>
+      <field>GENEID</field>
+    </link>
+    <link>
+      <collection>/data/project_annotations</collection>
+      <field>PROJECTID</field>
+    </link>
+  </links>
+</collection>

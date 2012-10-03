@@ -1,0 +1,529 @@
+<website>
+    <title>IntOGen Functional Mutations</title>
+    <header>html/header.html</header>
+    <bottom>html/bottom.html</bottom>
+    <css>css/website.css</css>
+    <pages>
+        <search>
+            <id>search</id>
+            <label>Search</label>
+            <css>css/search.css</css>
+            <type>
+                <collection>/data/gene_annotations</collection>
+                <fields>SYMBOL, GENEID, ENTREZID, REFSEQID</fields>
+                <keys>SYMBOL, ENTREZID, REFSEQID, GENEID</keys>
+                <examples>BRCA1, NM_001126114, ENSG00000133703</examples>
+                <link>
+                    <title>Somatic cancer mutations detected in this gene</title>
+                    <url>browser/mutations?pf=$collection::$entity::de&amp;pwmutations-tableo=data/snv_project_mutations::SNV_IMPACT::a</url>
+                </link>
+                <link>
+                    <title>Tumor types in which the gene is predicted to be a driver using OncodriveFM</title>
+                    <url>browser/genes-by-topography?pf=$collection::$entity::de&amp;pwtab3-tableo=data/gene_topo_mutations-combination::QVALUE::a</url>
+                </link>
+            </type>
+            <type>
+                <collection>/data/project_annotations</collection>
+                <fields>PROJECT_ALIAS, PROJECT_NAME, AUTHORS, PUBMEDID, TOPOGRAPHY, PROJECTID</fields>
+                <keys>PROJECT_ALIAS</keys>
+                <examples>Breast, Glioblastoma</examples>
+                <link>
+                    <title>Genes frequently mutated in the project</title>
+                    <visible>data/project_annotations[TYPE = mutation]</visible>
+                    <url>browser/genes-by-project?pview=Mutations&amp;pf=$collection::$entity::de&amp;pwgenes-by-project-mut-tableo=data/gene_project_mutations-recurrence::RECURRENCE::d</url>
+                </link>
+                <link>
+                    <title>Genes predicted as driver genes according to OncodriveFM</title>
+                    <visible>data/project_annotations[TYPE = mutation]</visible>
+                    <url>browser/genes-by-project?pview=Mutations&amp;pf=$collection::$entity::de&amp;pwgenes-by-project-mut-tableo=data/gene_project_mutations::QVALUE::a</url>
+                </link>
+            </type>
+            <type>
+                <collection>/data/topo_annotations</collection>
+                <fields>NAME</fields>
+                <keys>NAME</keys>
+                <examples>brain, breast</examples>
+                <link>
+                    <title>Genes frequently mutated in tumors of this site</title>
+                    <url>browser/genes-by-topography?pf=$collection::$entity::de&amp;pwtab3-tableo=data/gene_topo_mutations-combination::QVALUE::a</url>
+                </link>
+                <link>
+                    <title>Genes predicted as driver genes according to OncodriveFM in tumors of this site</title>
+                    <url>browser/genes-by-topography?pf=$collection::$entity::de&amp;pwtab3-tableo=data/gene_topo_mutations-combination::QVALUE::a</url>
+                </link>
+            </type>
+        </search>
+
+        <browser>
+            <id>browser</id>
+            <label>Browser</label>
+            <css>css/browser.css</css>
+            <tabs>
+                <tab>
+                    <id>mutations</id>
+                    <title>Mutations</title>
+                    <view>
+                        <title>Table</title>
+                        <main>mutations-table</main>
+                        <top>views</top>
+                        <topRight>hello, mutations-search, mutations-filters, download, share</topRight>
+                    </view>
+                    <view>
+                        <title>Matrix</title>
+                        <main>mutations-heatmap</main>
+                        <top>views</top>
+                        <topRight>mutations-filters, download, share</topRight>
+                        <visible>data/project_annotations</visible>
+                    </view>
+                </tab>
+                <tab>
+                    <id>genes-by-topography</id>
+                    <group>Genes</group>
+                    <title>by topography</title>
+                    <view>
+                        <title>Table</title>
+                        <main>tab3-table</main>
+                        <top>views</top>
+                        <topRight>tab3-search, tab3-filters, download, share</topRight>
+                        <visible>!data/topo_annotations, !data/gene_annotations</visible>
+                    </view>
+                    <view>
+                        <title>Plot</title>
+                        <main>genes-by-topography-plot</main>
+                        <top>views</top>
+                        <topRight>tab3-filters, download, share</topRight>
+                        <visible>data/topo_annotations, !data/gene_annotations</visible>
+                    </view>
+                    <view>
+                        <title>Matrix</title>
+                        <main>genes-by-topography-heatmap</main>
+                        <top>views</top>
+                        <topRight>tab3-filters, download, share</topRight>
+                        <visible>!data/topo_annotations, !data/gene_annotations</visible>
+                    </view>
+                </tab>
+                <tab>
+                    <id>genes-by-mut-project</id>
+                    <group>Genes</group>
+                    <title>by mutations project</title>
+                    <view>
+                        <title>Table</title>
+                        <main>genes-by-project-mut-table</main>
+                        <top>views</top>
+                        <topRight>genes-by-project-search, download, share</topRight>
+                    </view>
+                </tab>
+            </tabs>
+            <widgets>
+                <widget-views>
+                    <id>views</id>
+                </widget-views>
+                <widget-download>
+                    <id>download</id>
+                    <button><![CDATA[<i class="icon-download-alt"></i>]]></button>
+                    <title>Export this data</title>
+                </widget-download>
+                <widget-share>
+                    <id>share</id>
+                    <button><![CDATA[<i class="icon-share"></i>]]></button>
+                    <title>Share or embed this view</title>
+                </widget-share>
+                <widget-filters>
+                    <id>mutations-filters</id>
+                    <button><![CDATA[<i class="icon-filter"></i>]]></button>
+                    <title>Add data filters</title>
+                    <custom-filter>
+                        <title>HUGO Gene symbol</title>
+                        <collection>data/gene_annotations</collection>
+                        <field>SYMBOL</field>
+                    </custom-filter>
+                    <filter>
+                        <id>impact-high</id>
+                        <name>High impact mutations</name>
+                        <collection>data/snv_project_mutations</collection>
+                        <define>m='data/snv_project_mutations'</define>
+                        <where>m.SNV_IMPACT=1</where>
+                        <help>Show only mutations that have a high impact on the protein</help>
+                    </filter>
+                </widget-filters>
+                <widget-search>
+                    <id>mutations-search</id>
+                    <column>
+                        <collection>data/gene_annotations</collection>
+                        <fields>GENEID, SYMBOL</fields>
+                    </column>
+                    <column>
+                        <collection>data/project_annotations</collection>
+                        <fields>PROJECT_ALIAS</fields>
+                    </column>
+                </widget-search>
+                <viewer-table>
+                    <id>mutations-table</id>
+                    <collection>data/snv_project_mutations</collection>
+                    <columnset>
+                        <title>default</title>
+                        <columns>
+                            <column>
+                                <collection>data/snv_project_mutations</collection>
+                                <fields>SNVID</fields>
+                            </column>
+                            <column>
+                                <collection>data/gene_annotations</collection>
+                                <fields>GENEID</fields>
+                                <actions>FILTER</actions>
+                                <visible>!data/gene_annotations</visible>
+                            </column>
+                            <column>
+                                <collection>data/gene_annotations</collection>
+                                <fields>SYMBOL</fields>
+                                <visible>!data/gene_annotations</visible>
+                            </column>
+                            <column>
+                                <collection>data/project_annotations</collection>
+                                <fields>PROJECT_ALIAS</fields>
+                                <actions>FILTER</actions>
+                                <visible>!data/project_annotations</visible>
+                            </column>
+                            <column>
+                                <collection>data/project_annotations</collection>
+                                <fields>PROJECTID</fields>
+                                <visible>false</visible>
+                            </column>
+                            <column>
+                                <collection>data/project_annotations</collection>
+                                <fields>TOPOGRAPHY</fields>
+                                <visible>!data/project_annotations</visible>
+                            </column>
+                            <column>
+                                <collection>data/snv_project_mutations-recurrence</collection>
+                                <fields>RECURRENCE, NUM_SAMPLES, FREQ</fields>
+                            </column>
+                            <column>
+                                <collection>data/snv_project_mutations</collection>
+                                <fields>SNV_IMPACT</fields>
+                            </column>
+                            <column>
+                                <collection>data/snv_project_mutations</collection>
+                                <fields>CHROMOSOME, POSITION, ALLELE, GENEID, PROJECTID</fields>
+                                <visible>false</visible>
+                            </column>
+                        </columns>
+                    </columnset>
+                </viewer-table>
+                <viewer-heatmap>
+                    <id>mutations-heatmap</id>
+                    <collection>data/gene_project_sample-mutations</collection>
+                    <init>
+                        <![CDATA[
+                        var top = $('#heatmap').offset().top;
+                        var wHeight = $(window).height();
+
+                        // Size
+                        heatmap.size.width = $('#heatmap').width() - 290;
+                        heatmap.size.height = wHeight - top - 370;
+                        if (heatmap.size.width < 200) {
+                            heatmap.size.width = 200;
+                        }
+                        if (heatmap.size.height < 200) {
+                            if (wHeight > 250) {
+                                heatmap.size.height = wHeight - 50;
+                            } else {
+                                heatmap.size.height = 200;
+                            }
+                        }
+
+                        // Default cell value
+                        heatmap.cells.selectedValue = 3;
+
+                        // Configure decorators and aggregators
+                        heatmap.cells.decorators[1] = new jheatmap.decorators.Heat({ minValue: 0, midValue: 0.5, maxValue: 1 });
+                        heatmap.cells.aggregators[1] = new jheatmap.aggregators.Addition();
+                        heatmap.cells.decorators[2] = new jheatmap.decorators.Heat({ minValue: 0, midValue: 0.5, maxValue: 1 });
+                        heatmap.cells.aggregators[2] = new jheatmap.aggregators.Addition();
+                        heatmap.cells.decorators[3] = new jheatmap.decorators.Heat({ minValue: -2, midValue: 1, maxValue: 4 });
+                        heatmap.cells.aggregators[3] = new jheatmap.aggregators.Addition();
+
+                        // Row annotations
+                        heatmap.rows.decorators[2] = new jheatmap.decorators.PValue();
+                        heatmap.rows.decorators[3] = new jheatmap.decorators.Heat({ minValue: 0, minColor: [255, 255, 255], midValue: 0.05, maxValue: 0.25, maxColor: [255, 0, 0] });
+                		heatmap.rows.annotations = [2, 3];
+
+                        // Setup default zoom
+                        heatmap.cols.zoom = 12;
+                        heatmap.rows.zoom = 12;
+
+                        // Default sorting
+                        heatmap.rows.sort.type = "value";
+                        heatmap.rows.sort.field = 3;
+                        heatmap.rows.sort.asc = true;
+                        heatmap.cols.sort.type = "value";
+                        heatmap.cols.sort.field = 3;
+                        heatmap.cols.sort.asc = true;
+                        heatmap.applySort();
+                        ]]>
+                    </init>
+
+                    <rowAnnotations>4, 5, 6, 7</rowAnnotations>
+
+                    <row>
+                        <collection>/data/gene_annotations</collection>
+                        <fields>SYMBOL, GENEID</fields>
+                    </row>
+
+                    <row>
+                        <collection>/data/gene_project_mutations</collection>
+                        <fields>QVALUE</fields>
+                    </row>
+
+                    <row>
+                        <collection>/data/gene_project_mutations-recurrence</collection>
+                        <fields>FREQ</fields>
+                    </row>
+
+                    <colAnnotations>0</colAnnotations>
+
+                    <column>
+                        <collection>data/gene_project_sample-mutations</collection>
+                        <fields>SAMPLES</fields>
+                    </column>
+
+                    <cell>
+                        <collection>data/gene_project_sample-mutations</collection>
+                        <fields>SCORE_1, SCORE_2, SCORE_3</fields>
+                    </cell>
+                </viewer-heatmap>
+                <widget-search>
+                    <id>tab3-search</id>
+                    <column>
+                        <collection>data/gene_annotations</collection>
+                        <fields>GENEID,CHROMOSOME,BAND,SYMBOL,ENTREZID</fields>
+                    </column>
+                    <column>
+                        <collection>data/topo_annotations</collection>
+                        <fields>NAME</fields>
+                    </column>
+                </widget-search>
+                <widget-filters>
+                    <id>tab3-filters</id>
+                    <button><![CDATA[<i class="icon-filter"></i>]]></button>
+                    <title>Add data filters</title>
+                    <custom-filter>
+                        <title>HUGO Gene symbol</title>
+                        <collection>data/gene_annotations</collection>
+                        <field>SYMBOL</field>
+                    </custom-filter>
+                </widget-filters>
+
+                <viewer-table>
+                    <id>tab3-table</id>
+                    <collection>data/gene_topo_mutations-combination</collection>
+                    <columnset>
+                        <title>default</title>
+                        <columns>
+                            <column>
+                                <collection>data/gene_annotations</collection>
+                                <fields>GENEID</fields>
+                                <actions>FILTER</actions>
+                                <visible>!data/gene_annotations</visible>
+                            </column>
+                            <column>
+                                <collection>data/gene_annotations</collection>
+                                <fields>SYMBOL</fields>
+                                <visible>!data/gene_annotations</visible>
+                            </column>
+                            <column>
+                                <collection>data/topo_annotations</collection>
+                                <fields>NAME</fields>
+                                <actions>FILTER</actions>
+                                <visible>!data/topo_annotations</visible>
+                            </column>
+                            <column>
+                                <collection>data/topo_annotations</collection>
+                                <fields>TOPOID</fields>
+                                <visible>false</visible>
+                            </column>
+                            <column>
+                                <collection>data/gene_topo_mutations-combination</collection>
+                                <fields>QVALUE</fields>
+                                <decorator>PVALUE</decorator>
+                            </column>
+                            <column>
+                                <collection>data/gene_topo_cosmic</collection>
+                                <fields>FOUND, STUDIED</fields>
+                            </column>
+                        </columns>
+                    </columnset>
+                </viewer-table>
+                <viewer-plot>
+                    <id>genes-by-topography-plot</id>
+                    <collection>data/gene_topo_mutations-combination</collection>
+                    <fields>
+                        <x>3</x>
+                        <y>4</y>
+                        <color>0</color>
+                        <size>0</size>
+                    </fields>
+                    <columns>
+                        <column>
+                            <collection>data/gene_annotations</collection>
+                            <fields>GENEID, SYMBOL</fields>
+                        </column>
+                        <column>
+                            <collection>data/gene_topo_mutations-combination</collection>
+                            <fields>QVALUE</fields>
+                            <decorator>PVALUE</decorator>
+                        </column>
+                        <column>
+                            <collection>data/gene_topo_cosmic</collection>
+                            <fields>FOUND, STUDIED</fields>
+                        </column>
+                    </columns>
+                </viewer-plot>
+                <viewer-heatmap>
+                    <id>genes-by-topography-heatmap</id>
+                    <collection>data/gene_topo_mutations-combination</collection>
+                    <init>
+                        <![CDATA[
+                        var top = $('#heatmap').offset().top;
+                        var wHeight = $(window).height();
+
+                        // Size
+                        heatmap.size.width = $('#heatmap').width() - 290;
+                        heatmap.size.height = wHeight - top - 370;
+                        if (heatmap.size.width < 200) {
+                            heatmap.size.width = 200;
+                        }
+                        if (heatmap.size.height < 200) {
+                            if (wHeight > 250) {
+                                heatmap.size.height = wHeight - 50;
+                            } else {
+                                heatmap.size.height = 200;
+                            }
+                        }
+			moveFooter();
+
+                        // Default cell value
+                        heatmap.cells.selectedValue = 3;
+
+                        // Configure decorators and aggregators
+                        heatmap.cells.decorators[3] = new jheatmap.decorators.PValue( { cutoff: 0.05 } );
+                        heatmap.cells.aggregators[3] = new jheatmap.aggregators.PValue( { cutoff: 0.05 } );
+                        heatmap.cells.decorators[4] = new jheatmap.decorators.Heat({ minValue: 0, midValue: 0.5, maxValue: 1 });
+                        heatmap.cells.aggregators[4] = new jheatmap.aggregators.Addition();
+                        heatmap.cells.decorators[5] = new jheatmap.decorators.PValue( { cutoff: 0.05 } );
+                        heatmap.cells.aggregators[5] = new jheatmap.aggregators.PValue( { cutoff: 0.05 } );
+
+                        // Setup default zoom
+                        heatmap.cols.zoom = 12;
+                        heatmap.rows.zoom = 12;
+
+                        // Default sorting
+                        heatmap.rows.sort.type = "value";
+                        heatmap.rows.sort.field = 3;
+                        heatmap.rows.sort.asc = false;
+                        heatmap.cols.sort.type = "value";
+                        heatmap.cols.sort.field = 3;
+                        heatmap.cols.sort.asc = false;
+                        heatmap.applySort();
+                        ]]>
+                    </init>
+
+                    <row>
+                        <collection>data/gene_annotations</collection>
+                        <fields>SYMBOL, GENEID</fields>
+                    </row>
+
+                    <column>
+                        <collection>data/topo_annotations</collection>
+                        <fields>NAME</fields>
+                    </column>
+
+                    <cell>
+                        <collection>data/gene_topo_mutations-combination</collection>
+                        <fields>QVALUE</fields>
+                    </cell>
+                </viewer-heatmap>
+
+                <widget-search>
+                    <id>genes-by-project-search</id>
+                    <column>
+                        <collection>data/project_annotations</collection>
+                        <fields>PROJECT_ALIAS</fields>
+                    </column>
+                    <column>
+                        <collection>data/gene_annotations</collection>
+                        <fields>GENEID,CHROMOSOME,BAND,SYMBOL,ENTREZID</fields>
+                    </column>
+                </widget-search>
+
+                <viewer-table>
+                    <id>genes-by-project-mut-table</id>
+                    <collection>data/gene_project_mutations</collection>
+                    <defaultStatus>
+                        <order>
+                            <collectionRef>data/gene_project_mutations</collectionRef>
+                            <fieldId>QVALUE</fieldId>
+                            <ascendent>true</ascendent>
+                        </order>
+                    </defaultStatus>
+                    <columnset>
+                        <title>default</title>
+                        <columns>
+                            <column>
+                                <collection>data/gene_annotations</collection>
+                                <fields>GENEID</fields>
+                                <actions>FILTER</actions>
+                                <visible>!data/gene_annotations</visible>
+                            </column>
+                            <column>
+                                <collection>data/gene_annotations</collection>
+                                <fields>SYMBOL</fields>
+                                <visible>!data/gene_annotations</visible>
+                            </column>
+                            <column>
+                                <collection>data/project_annotations</collection>
+                                <fields>PROJECT_ALIAS</fields>
+                                <actions>FILTER</actions>
+                                <visible>!data/project_annotations</visible>
+                            </column>
+                            <column>
+                                <collection>data/project_annotations</collection>
+                                <fields>PROJECTID</fields>
+                                <visible>false</visible>
+                            </column>
+                            <column>
+                                <collection>data/project_annotations</collection>
+                                <fields>TOPOGRAPHY</fields>
+                                <visible>!data/project_annotations</visible>
+                            </column>
+                            <column>
+                                <collection>data/gene_project_mutations</collection>
+                                <fields>QVALUE</fields>
+                                <decorator>PVALUE</decorator>
+                            </column>
+                            <column>
+                                <collection>data/gene_project_mutations-recurrence</collection>
+                                <fields>RECURRENCE, NUM_SAMPLES, FREQ</fields>
+                            </column>
+                        </columns>
+                    </columnset>
+                </viewer-table>
+            </widgets>
+        </browser>
+
+        <html>
+            <id>analysis</id>
+            <label>Analysis</label>
+            <css>css/browser.css</css>
+            <content>html/analysis.html</content>
+        </html>
+
+        <html>
+            <id>about</id>
+            <label>About</label>
+            <css>css/browser.css</css>
+            <content>html/about.html</content>
+        </html>
+    </pages>
+
+</website>

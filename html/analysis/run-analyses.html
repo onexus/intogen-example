@@ -1,0 +1,67 @@
+<html>
+<head><title>IntOGen pipeline documentation provisional</title>
+    <style type="text/css">
+        ol{margin:0;padding:0}.c0{color:#1155cc;background-color:#ffffff;text-decoration:underline}.c3{color:inherit;text-decoration:inherit}.c6{color:#1155cc;text-decoration:underline}.c8{font-size:18pt;font-weight:bold}.c7{max-width:468pt;padding:72pt
+        72pt 72pt
+        72pt}.c1{text-align:justify;direction:ltr}.c2{direction:ltr}.c5{height:11pt}.c4{background-color:#ffffff}.c9{font-size:9pt}.title{padding-top:24pt;line-height:1.15;text-align:left;color:#000000;font-size:36pt;font-family:"Arial";font-weight:bold;padding-bottom:6pt}.subtitle{padding-top:18pt;line-height:1.15;text-align:left;color:#666666;font-style:italic;font-size:24pt;font-family:"Georgia";padding-bottom:4pt}li{color:#000000;font-size:11pt;font-family:"Arial"}p{color:#000000;font-size:11pt;margin:0;font-family:"Arial"}h1{padding-top:24pt;line-height:1.15;text-align:left;color:#000000;font-size:18pt;font-family:"Arial";font-weight:bold;padding-bottom:6pt}h2{padding-top:18pt;line-height:1.15;text-align:left;color:#000000;font-size:14pt;font-family:"Arial";font-weight:bold;padding-bottom:4pt}h3{padding-top:14pt;line-height:1.15;text-align:left;color:#666666;font-size:12pt;font-family:"Arial";font-weight:bold;padding-bottom:4pt}h4{padding-top:12pt;line-height:1.15;text-align:left;color:#666666;font-style:italic;font-size:11pt;font-family:"Arial";padding-bottom:2pt}h5{padding-top:11pt;line-height:1.15;text-align:left;color:#666666;font-size:10pt;font-family:"Arial";font-weight:bold;padding-bottom:2pt}h6{padding-top:10pt;line-height:1.15;text-align:left;color:#666666;font-style:italic;font-size:10pt;font-family:"Arial";padding-bottom:2pt}
+    </style>
+</head>
+<body class="c4 c7"><h1 class="c2"><span>Run Analyses</span></h1>
+
+<h2 class="c2"><span>Identification of mutation consequences</span></h2>
+
+<p class="c1"><span>The first step in the analysis consist on the identification of the effect that mutations may have on transcripts and regulatory regions. For that we use</span><span><a
+        class="c3" href="http://www.ensembl.org/Homo_sapiens/UserData/UploadVariations">&nbsp;</a></span><span
+        class="c6"><a class="c3" href="http://www.ensembl.org/Homo_sapiens/UserData/UploadVariations">Variant Effect
+    Predictor (VEP) of Ensembl</a></span><span>&nbsp;through its API. VEP maps each mutation to the reference genome and identifies each Ensemble transcript that overlaps the variation. Using a rule-based approach VEP predicts the effect that each mutation may have on the transcript. The output is a list of consequence terms, defined by the Sequence Ontology (SO), for each mutation and transcript. For a definition of each term look at the table in</span><span><a
+        class="c3" href="http://www.ensembl.org/info/docs/variation/predicted_data.html#consequences">
+    &nbsp;</a></span><span class="c6"><a class="c3"
+                                         href="http://www.ensembl.org/info/docs/variation/predicted_data.html#consequences">VEP
+    documentation</a></span><span>.</span></p>
+
+<p class="c2 c5"><span></span></p>
+
+<h2 class="c2"><a name="h.r9kzt5bz0jrp"></a><span>Assessment of functional impact of non-synonymous cancer variants (TransFIC)</span>
+</h2>
+
+<p class="c1"><span>To assess the functional impact or non-synonymous cancer variants we use </span><span class="c0"><a
+        class="c3" href="http://bg.upf.edu/transfic">TransFIC (TRANSformed Functional Impact for Cancer)</a></span><span
+        class="c4">. </span><span
+        class="c4">This method computes the scores provided by well-known tools (e.g. </span><span class="c0"><a
+        class="c3" href="http://sift.jcvi.org/">SIFT</a></span><span class="c4">, </span><span class="c0"><a class="c3"
+                                                                                                             href="http://genetics.bwh.harvard.edu/pph2/dokuwiki/downloads">Polyphen2</a></span><span
+        class="c4">, </span><span class="c0"><a class="c3"
+                                                href="http://mutationassessor.org/">MutationAssessor</a></span><span
+        class="c4">) and transform them </span><span>taking into account the basal tolerance of genes to functional variants. </span><span
+        class="c4">TransFIC improves notably the performance of original scores for the identification of relevant cancer variants (</span><span
+        class="c0"><a class="c3" href="http://bg.upf.edu/transfic">read more</a></span><span class="c4">).</span><span
+        class="c4 c9">&nbsp;</span><span class="c4">Mutations with greater transFIC are more likely to be cancer drivers. </span>
+</p>
+
+<h2 class="c2"><span>Identification of driver genes (Oncodrive-fm)</span></h2>
+
+<p class="c1"><span>To identify driver genes from mutations in a cohort of tumors we use</span><span><a class="c3"
+                                                                                                        href="http://bg.upf.edu/oncodrive-fm">
+    &nbsp;</a></span><span class="c6"><a class="c3" href="http://bg.upf.edu/oncodrive-fm">Oncodrive-fm</a></span><span>. This method is based in the assumption that </span><span
+        class="c4">cancer driver genes accumulate highly functional mutations, as those are the ones that alter the function of the encoded protein conferring a selective advantage to the cell. Oncodrive-fm computes a metric called FM-bias that measures the bias towards the accumulation of functional mutations. Genes with high FM-bias are candidate drivers.</span>
+</p>
+
+<p class="c2 c5"><span class="c4"></span></p>
+
+<h2 class="c2"><span>Identification of driver pathways (Oncodrive-fm)</span></h2>
+
+<p class="c1"><span>To identify driver pathways we also use</span><span><a class="c3"
+                                                                           href="http://bg.upf.edu/oncodrive">&nbsp;</a></span><span
+        class="c6"><a class="c3" href="http://bg.upf.edu/oncodrive">Oncodrive-fm</a></span><span>. In this case instead of computing FM-bias per gene we compute it per each KEGG pathway.</span><span
+        class="c4">&nbsp;Pathways with high FM-bias are candidate drivers.</span></p>
+
+<p class="c2 c5"><span class="c4"></span></p>
+
+<h2 class="c2"><span>Recurrence analysis per gene and pathway</span></h2>
+
+<p class="c1"><span>Another important measure is the frequency of somatic mutations for each gene and pathway in the cohort of tumors.</span>
+</p>
+
+<p class="c2 c5"><span></span></p>
+</body>
+</html>

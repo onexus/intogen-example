@@ -1,0 +1,12 @@
+@media (min-width: 768px) {
+#beta-ribbon {
+    position: absolute;
+    right: 14px;
+    top: 25px;
+    width: 150px;
+    height: 150px;
+    background-image: url('beta-ribbon.png');
+    background-repeat: no-repeat;
+    background-position: right top;
+}
+}

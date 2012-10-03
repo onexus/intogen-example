@@ -1,0 +1,62 @@
+<collection>
+  <title>Mutations</title>
+  <loader>
+    <plugin>tsv-loader</plugin>
+    <parameter>
+      <key>data</key>
+      <value>/data/gene_project_sample-mutations.tsv</value>
+    </parameter>
+    <parameter>
+        <key>NULL_VALUE</key>
+        <value>NA</value>
+    </parameter>
+  </loader>
+  <fields>
+    <field>
+      <label>samples</label>
+      <title>Samples</title>
+      <id>SAMPLES</id>
+      <type>string</type>
+    </field>
+    <field>
+      <label>genes</label>
+      <title>Genes</title>
+      <id>GENES</id>
+      <type>string</type>
+    </field>
+    <field>
+      <label>s-sift</label>
+      <title>SIFT score</title>
+      <id>SCORE_1</id>
+      <type>double</type>
+    </field>
+    <field>
+      <label>s-pph2</label>
+      <title>PPH2 score</title>
+      <id>SCORE_2</id>
+      <type>double</type>
+    </field>
+    <field>
+      <label>s-ma</label>
+      <title>Mutation Assessor score</title>
+      <id>SCORE_3</id>
+      <type>double</type>
+    </field>
+    <field>
+      <label>projectid</label>
+      <title>Projectid</title>
+      <id>PROJECT_ID</id>
+      <type>string</type>
+    </field>
+  </fields>
+  <links>
+    <link>
+      <collection>/data/project_annotations</collection>
+      <field>PROJECT_ID == PROJECTID</field>
+    </link>
+   <link>
+      <collection>/data/gene_annotations</collection>
+      <field>GENES == GENEID</field>
+    </link>
+  </links>
+</collection>

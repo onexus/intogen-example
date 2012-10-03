@@ -1,0 +1,52 @@
+<collection>
+    <title>Mutations</title>
+    <loader>
+        <plugin>tsv-loader</plugin>
+        <parameter>
+            <key>data</key>
+            <value>/data/gene_project_mutations.tsv</value>
+        </parameter>
+        <parameter>
+            <key>NULL_VALUE</key>
+            <value>\N</value>
+        </parameter>
+    </loader>
+    <fields>
+        <field>
+            <label>geneid</label>
+            <title>Geneid</title>
+            <id>GENEID</id>
+            <type>string</type>
+            <primary-key>true</primary-key>
+        </field>
+        <field>
+            <label>fm-bias</label>
+            <title>fm-bias pValue</title>
+            <id>PVALUE</id>
+            <type>double</type>
+        </field>
+        <field>
+            <label>fm-bias</label>
+            <title>Corrected pValue</title>
+            <id>QVALUE</id>
+            <type>double</type>
+        </field>
+        <field>
+            <label>projectid</label>
+            <title>Projectid</title>
+            <id>PROJECTID</id>
+            <type>string</type>
+            <primary-key>true</primary-key>
+        </field>
+    </fields>
+    <links>
+        <link>
+            <collection>/data/gene_annotations</collection>
+            <field>GENEID</field>
+        </link>
+        <link>
+            <collection>/data/project_annotations</collection>
+            <field>PROJECTID</field>
+        </link>
+    </links>
+</collection>

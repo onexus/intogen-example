@@ -1,0 +1,42 @@
+<collection>
+  <title>Mutations</title>
+  <loader>
+    <plugin>tsv-loader</plugin>
+    <parameter>
+      <key>data</key>
+      <value>/data/gene_topo_mutations-combination.tsv</value>
+    </parameter>
+  </loader>
+  <fields>
+    <field>
+      <label>topoid</label>
+      <title>Topoid</title>
+      <id>TOPOID</id>
+      <type>integer</type>
+      <primary-key>true</primary-key>
+    </field>
+    <field>
+      <label>geneid</label>
+      <title>Geneid</title>
+      <id>GENEID</id>
+      <type>string</type>
+      <primary-key>true</primary-key>
+    </field>
+    <field>
+      <label>fm-bias</label>
+      <title>Combined fm-bias pValue</title>
+      <id>QVALUE</id>
+      <type>double</type>
+    </field>
+  </fields>
+  <links>
+    <link>
+      <collection>/data/topo_annotations</collection>
+      <field>TOPOID</field>
+    </link>
+    <link>
+      <collection>/data/gene_annotations</collection>
+      <field>GENEID</field>
+    </link>
+  </links>
+</collection>
