@@ -137,12 +137,10 @@
                         <field>SYMBOL</field>
                     </custom-filter>
                     <filter>
-                        <id>impact-high</id>
                         <name>High impact mutations</name>
                         <collection>data/snv_project_mutations</collection>
                         <define>m='data/snv_project_mutations'</define>
                         <where>m.SNV_IMPACT=1</where>
-                        <help>Show only mutations that have a high impact on the protein</help>
                     </filter>
                 </widget-filters>
                 <widget-search>
@@ -460,8 +458,8 @@
                     <collection>data/gene_project_mutations</collection>
                     <defaultStatus>
                         <order>
-                            <collectionRef>data/gene_project_mutations</collectionRef>
-                            <fieldId>QVALUE</fieldId>
+                            <collection>data/gene_project_mutations</collection>
+                            <field>QVALUE</field>
                             <ascendent>true</ascendent>
                         </order>
                     </defaultStatus>
